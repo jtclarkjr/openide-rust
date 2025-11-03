@@ -18,16 +18,20 @@ fn main() {
         exit(0);
     }
 
-    if args.len() != 3 {
-        eprintln!("Usage: {} <editor> <path_to_project>", args[0]);
+    if args.len() < 2 || args.len() > 3 {
+        eprintln!("Usage: {} [editor] <path_to_project>", args[0]);
         eprintln!("Or use: {} list - to see available editors", args[0]);
+        eprintln!("Default editor is vscode if not specified");
         exit(1);
     }
 
-    let editor = &args[1];
-    let project_path = &args[2];
+    let (editor, project_path) = if args.len() == 2 {
+        ("vscode", &args[1])
+    } else {
+        (args[1].as_str(), &args[2])
+    };
 
-    let editor_name = match editor.as_str() {
+    let editor_name = match editor {
         "xcode" => "Xcode",
         "vscode" => "Visual Studio Code",
         "webstorm" => "WebStorm",
