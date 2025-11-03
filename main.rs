@@ -32,9 +32,7 @@ fn main() {
     }
 
     // Check if arg is a valid editor
-    let is_valid_editor = |name: &str| -> bool {
-        EDITORS.iter().any(|(key, _)| *key == name)
-    };
+    let is_valid_editor = |name: &str| -> bool { EDITORS.iter().any(|(key, _)| *key == name) };
 
     let (editor, project_path) = if args.len() == 2 {
         // Check if the single arg is an editor name without a path
@@ -53,7 +51,10 @@ fn main() {
         .find(|(key, _)| *key == editor)
         .map(|(_, name)| *name)
         .unwrap_or_else(|| {
-            eprintln!("Invalid IDE. Use '{} list' to see available editors.", args[0]);
+            eprintln!(
+                "Invalid IDE. Use '{} list' to see available editors.",
+                args[0]
+            );
             exit(1);
         });
 

@@ -1,6 +1,6 @@
 # OpenIDE Rust
 
-A quick command-line tool to open projects in Visual Studio Code.
+A quick command-line tool to open projects in various IDEs and editors.
 
 ## Installation
 
@@ -10,17 +10,29 @@ git clone https://github.com/yourusername/openide-rust.git
 cd openide-rust
 ```
 
-2. Compile the program:
-Can rename openide to your own choice
+2. Build the program:
+
+**Option A: Using Cargo (Recommended)**
+```bash
+cargo build --release
+```
+
+The binary will be at `target/release/openide`
+
+**Option B: Using rustc directly**
 ```bash
 rustc main.rs -o openide
 ```
 
 3. Install globally (requires sudo):
 ```bash
-sudo cp openide /usr/local/bin/`
+# If using cargo
+sudo cp target/release/openide /usr/local/bin/
 
-# Confirm path
+# If using rustc
+sudo cp openide /usr/local/bin/
+
+# Confirm installation
 which openide
 ```
 
@@ -28,7 +40,7 @@ Optional - Remove globally:
 ```bash
 sudo rm /usr/local/bin/openide
 
-# Confirm path
+# Confirm removal
 which openide
 ```
 
@@ -40,14 +52,47 @@ Once installed, you can use the command from anywhere:
 # List available editors
 openide list
 
-# Open a project with your preferred editor
-openide vscode ~/some-project
+# Open a project with default editor (vscode)
+openide ~/some-project
+
+# Open a project with a specific editor
+openide cursor ~/some-project
+openide xcode ~/some-project
 ```
 
-This will open the specified project directory in your chosen editor. You can use various editors like VS Code, Xcode, WebStorm, and more. Use the `list` command to see all available options.
+This will open the specified project directory in your chosen editor.
+
+## Available Editors
+
+- xcode - Xcode
+- vscode - Visual Studio Code (default)
+- webstorm - WebStorm
+- pycharm - PyCharm
+- pycharm-ce - PyCharm CE
+- intellij - IntelliJ IDEA
+- goland - GoLand
+- cursor - Cursor
+- neovim - Neovim
+
+## Development
+
+```bash
+# Run without installing
+cargo run -- list
+cargo run -- vscode /path/to/project
+
+# Format code
+cargo fmt
+
+# Lint code
+cargo clippy
+
+# Run tests
+cargo test
+```
 
 ## Requirements
 
-- Rust compiler (rustc)
-- Visual Studio Code
-- sudo privileges for installation
+- Rust toolchain (rustc and cargo)
+- One or more of the supported editors installed
+- sudo privileges for global installation
