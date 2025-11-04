@@ -5,7 +5,6 @@ const EDITORS: &[(&str, &str)] = &[
     ("xcode", "Xcode"),
     ("vscode", "Visual Studio Code"),
     ("webstorm", "WebStorm"),
-    ("pycharm", "PyCharm"),
     ("pycharm-ce", "PyCharm CE"),
     ("intellij", "IntelliJ IDEA"),
     ("goland", "GoLand"),
