@@ -6,7 +6,7 @@ A CLI tool to open projects in various IDEs and editors.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/openide-rust.git
+git clone https://github.com/jtclarkjr/openide-rust.git
 cd openide-rust
 ```
 
