@@ -2,6 +2,31 @@ use std::env;
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
+pub enum Command {
+    Version,
+    Help,
+    List,
+    Open { editor: String, path: String },
+}
+
+#[derive(Debug)]
+pub enum ParseError {
+    TooManyArgs,
+}
+
+impl std::fmt::Display for ParseError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            ParseError::TooManyArgs => write!(
+                f,
+                "Too many arguments. Usage: openide [editor] [path_to_project]"
+            ),
+        }
+    }
+}
+
+impl std::error::Error for ParseError {}
+
 pub fn print_version() {
     println!("openide {}", VERSION);
 }
@@ -28,6 +53,33 @@ pub fn print_help() {
     println!("    openide cursor ~/project   # Open path in Cursor");
 }
 
-pub fn get_args() -> Vec<String> {
-    env::args().collect()
+pub fn parse_args(is_valid_editor: impl Fn(&str) -> bool) -> Result<Command, ParseError> {
+    let args: Vec<String> = env::args().collect();
+
+    if args.len() == 2 {
+        match args[1].as_str() {
+            "--version" | "-v" => return Ok(Command::Version),
+            "--help" | "-h" => return Ok(Command::Help),
+            "list" => return Ok(Command::List),
+            _ => {}
+        }
+    }
+
+    if args.len() > 3 {
+        return Err(ParseError::TooManyArgs);
+    }
+
+    let (editor, path) = match args.len() {
+        1 => ("vscode".to_string(), ".".to_string()),
+        2 => {
+            if is_valid_editor(&args[1]) {
+                (args[1].clone(), ".".to_string())
+            } else {
+                ("vscode".to_string(), args[1].clone())
+            }
+        }
+        _ => (args[1].clone(), args[2].clone()),
+    };
+
+    Ok(Command::Open { editor, path })
 }
