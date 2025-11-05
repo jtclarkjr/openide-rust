@@ -5,4 +5,4 @@ edition = "2021"
 
 [[bin]]
 name = "openide"
-path = "main.rs"
+path = "src/main.rs"
