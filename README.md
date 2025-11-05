@@ -49,15 +49,18 @@ which openide
 Once installed, you can use the command from anywhere:
 
 ```bash
-# List available editors
-openide list
+# Open current path with default editor (vscode)
+openide
 
-# Open a project with default editor (vscode)
+# Open a specific path with default editor (vscode)
 openide ~/some-project
 
 # Open a project with a specific editor
 openide cursor ~/some-project
 openide xcode ~/some-project
+
+# List available editors
+openide list
 
 # Other commands
 openide --version
