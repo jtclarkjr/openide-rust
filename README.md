@@ -58,6 +58,10 @@ openide ~/some-project
 # Open a project with a specific editor
 openide cursor ~/some-project
 openide xcode ~/some-project
+
+# Other commands
+openide --version
+openide --help
 ```
 
 This will open the specified project directory in your chosen editor.
