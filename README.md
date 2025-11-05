@@ -1,6 +1,6 @@
 # OpenIDE Rust
 
-A quick command-line tool to open projects in various IDEs and editors.
+A CLI tool to open projects in various IDEs and editors.
 
 ## Installation
 
@@ -67,12 +67,10 @@ This will open the specified project directory in your chosen editor.
 - xcode - Xcode
 - vscode - Visual Studio Code (default)
 - webstorm - WebStorm
-- pycharm - PyCharm
 - pycharm-ce - PyCharm CE
 - intellij - IntelliJ IDEA
 - goland - GoLand
 - cursor - Cursor
-- neovim - Neovim
 
 ## Development
 

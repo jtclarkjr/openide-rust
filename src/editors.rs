@@ -8,7 +8,6 @@ pub const EDITORS: &[(&str, &str)] = &[
     ("intellij", "IntelliJ IDEA"),
     ("goland", "GoLand"),
     ("cursor", "Cursor"),
-    ("neovim", "Neovim"),
 ];
 
 #[derive(Debug)]
