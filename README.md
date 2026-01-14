@@ -49,10 +49,10 @@ which openide
 Once installed, you can use the command from anywhere:
 
 ```bash
-# Open current path with default editor (vscode)
+# Open current path with default editor (configured, falls back to vscode)
 openide
 
-# Open a specific path with default editor (vscode)
+# Open a specific path with default editor (configured, falls back to vscode)
 openide ~/some-project
 
 # Open a project with a specific editor
@@ -61,6 +61,12 @@ openide xcode ~/some-project
 
 # List available editors
 openide list
+
+# Set default editor
+openide default cursor
+
+# Reset default editor to vscode
+openide reset-default
 
 # Other commands
 openide --version
@@ -72,7 +78,7 @@ This will open the specified project directory in your chosen editor.
 ## Available Editors
 
 - xcode - Xcode
-- vscode - Visual Studio Code (default)
+- vscode - Visual Studio Code (default fallback)
 - webstorm - WebStorm
 - pycharm-ce - PyCharm CE
 - intellij - IntelliJ IDEA
